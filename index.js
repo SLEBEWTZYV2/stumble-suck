@@ -8,7 +8,7 @@ const questions = [
         type: "input",
         name: "authorization",
         message: color("Authorization keys:"),
-        prefix: ${color("[", "redBright")}+${color("]", "redBright")},
+        prefix: `${color("[", "redBright")}+${color("]", "redBright")}`,
         suffix: "~",
         validate: function (input) {
             const done = this.async();
@@ -33,7 +33,7 @@ const questions = [
         type: "list",
         name: "round",
         message: color("Authorization keys taken at 'Round':"),
-        prefix: ${color("[", "redBright")}+${color("]", "redBright")},
+        prefix: `${color("[", "redBright")}+${color("]", "redBright")}`,
         suffix: "~",
         choices: ["Stage 1", "Stage 2", "Stage 3"],
         filter: (value) => {
@@ -48,7 +48,7 @@ const questions = [
         type: "input",
         name: "interval",
         message: color("Interval Delay:"),
-        prefix: ${color("[", "redBright")}+${color("]", "redBright")},
+        prefix: `${color("[", "redBright")}+${color("]", "redBright")}`,
         suffix: "~",
         default: 1000,
         validate: function (input) {
@@ -62,7 +62,7 @@ const questions = [
     }
 ];
 
-const asciiText = figlet.textSync("VIP", {
+const asciiText = figlet.textSync("VIP NEW", {
     font: 'Graffiti',
     horizontalLayout: 'default',
     verticalLayout: 'default',
@@ -86,7 +86,7 @@ function iStumble(interval, round, authorization) {
             } else if (typeof data == "object") {
                 const date = new Date();
                 let { Id, Username, Country, Region, Crowns, SkillRating } = data.User;
-                const print = [${color(date.getHours())}:${date.getMinutes()}]  + [color(Id, "blueBright"), color(Username), color(Country, "red"), color(Region, "yellowBright"), color(Crowns, "greenBright"), color(SkillRating, "whiteBright")].join(" | ");
+                const print = `[${color(date.getHours())}:${date.getMinutes()}] ` + [color(Id, "greenBright"), color(Username), color(Country, "white"), color(Region, "greenBright"), color(Crowns, "greenBright"), color(SkillRating, "greenBright")].join(" | ");
                 console.log(print);
             }
         } catch (error) {}
@@ -100,7 +100,7 @@ function color(text, color) {
 function stageRequest(authorization, round) {
     return new Promise((resolve, reject) => {
         request({
-            url: http://kitkabackend.eastus.cloudapp.azure.com:5010/round/finishv2/${round},
+            url: `http://kitkabackend.eastus.cloudapp.azure.com:5010/round/finishv2/${round}`,
             headers: {
                 Authorization: JSON.stringify(authorization),
                 use_response_compression: true,
